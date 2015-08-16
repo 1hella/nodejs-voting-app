@@ -2,6 +2,31 @@
     margin: 20px 0;
 }
 
+.btn-lg {
+    width: 200px;
+}
+
+.marketing {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.marketing .fa {
+    font-size: 5em;
+}
+
+.marketing .fa-bolt {
+    color: #faea73;
+}
+
+.marketing .fa-globe {
+    color: #5cb85c;
+}
+
+.marketing .fa-facebook {
+    color: #4393b9;
+}
+
 #banner {
     border-bottom: none;
     margin-top: -20px;
