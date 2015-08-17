@@ -1,12 +1,14 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>VotePlex</h1>
+    <p class="lead">Create custom polls with live results.</p>
+  </div>
+</header>
+
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
-      <h1>Login</h1>
-      <p>Accounts are reset on server restart from <code>server/config/seed.js</code>. Default account is <code>test@test.com</code> / <code>test</code></p>
-      <p>Admin account is <code>admin@admin.com</code> / <code>admin</code></p>
-    </div>
     <div class="col-sm-12">
       <form class="form" name="form" ng-submit="login(form)" novalidate>
 
@@ -34,11 +36,14 @@
         </div>
 
         <div>
-          <button class="btn btn-inverse btn-lg btn-login" type="submit">
+          <button class="btn btn-success btn-login" type="submit">
             Login
           </button>
-          <a class="btn btn-default btn-lg btn-register" href="/signup">
-            Register
+          <a class="btn btn-default btn-info btn-login" href="/auth/twitter">
+            <i class="fa fa-twitter"></i> Connect with Twitter
+          </a>
+          <a class="btn btn-default btn-primary btn-login" href="/auth/facebook">
+            <i class="fa fa-facebook"></i> Connect with Facebook
           </a>
         </div>
 

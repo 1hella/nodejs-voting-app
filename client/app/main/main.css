@@ -2,12 +2,19 @@
     margin: 20px 0;
 }
 
-.btn-lg {
+.btn-wide {
     width: 200px;
 }
 
+.btn-login {
+    width: 187px;
+}
+
+.hero-unit {
+    margin-bottom: 40px;
+}
+
 .marketing {
-    margin-top: 40px;
     text-align: center;
 }
 
