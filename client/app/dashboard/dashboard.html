@@ -1,0 +1,46 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Dashboard</h1>
+    <p class="lead">What would you like to do today?</p>
+    <button ng-click="setTab(1)" class="btn btn-success btn-lg">New Poll</button>
+    <button ng-click="setTab(2)" class="btn btn-primary btn-lg">My Polls</button>
+  </div>
+</header>
+
+<div class="container dashboard-container" ng-show="isTab(1)">
+  <div>
+    <h2>New Poll</h2>
+  </div>
+  <form role="form" novalidate>
+    <div class="form-group">
+      <label for="name">Name your poll</label>
+      <input ng-model="poll.name" class="form-control" type="text" id="name" placeholder="What is your favourite soda?">
+    </div>
+    <div class="form-group">
+      <label>Options</label>
+      <div ng-repeat="option in poll.options" class="input-group">
+        <input ng-model="option.name" type="text" class="form-control" placeholder="{{getPlaceholder($index)}}" required>
+        <span class="input-group-btn">
+          <button ng-click="deleteOption($index)" class="btn btn-danger" type="button"><i class="fa fa-close"></i></button>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <button ng-click="addOption()" class="btn btn-default form-control">More Options</button>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success form-control">Submit</button>
+    </div>
+    {{poll}}
+  </form>
+</div>
+
+<div class="container dashboard-container" ng-show="isTab(2)">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <h2 class="text-center"> My Polls</h2>
+    </div>
+  </div>
+</div>
