@@ -13,7 +13,7 @@
   <div>
     <h2>New Poll</h2>
   </div>
-  <form role="form" novalidate>
+  <form role="form" ng-submit="submitPoll()" novalidate>
     <div class="form-group">
       <label for="name">Name your poll</label>
       <input ng-model="poll.name" class="form-control" type="text" id="name" placeholder="What is your favourite soda?">
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="form-group">
-      <button ng-click="addOption()" class="btn btn-default form-control">More Options</button>
+      <button ng-click="addOption()" type="button" class="btn btn-default form-control">More Options</button>
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-success form-control">Submit</button>
@@ -37,9 +37,16 @@
 </div>
 
 <div class="container dashboard-container" ng-show="isTab(2)">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <h2 class="text-center"> My Polls</h2>
-    </div>
+  <div>
+    <h2 class="text-center"> My Polls</h2>
+  </div>
+  <div ng-repeat="poll in myPolls">
+    <h3>{{ poll.name }}</h3>
+    <ul>
+      <li ng-repeat="option in poll.options">
+      <p> {{ option.name }} </p>
+      <p> {{ option.votes }} </p>
+      </li>
+    </ul>
   </div>
 </div>
