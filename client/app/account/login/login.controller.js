@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('workspaceApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location) {
+  .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -14,8 +14,8 @@ angular.module('workspaceApp')
           password: $scope.user.password
         })
         .then( function() {
-          // Logged in, redirect to dashboard
-          $location.path('/dashboard');
+          // Logged in, redirect to home
+          $location.path('/');
         })
         .catch( function(err) {
           $scope.errors.other = err.message;
@@ -23,4 +23,7 @@ angular.module('workspaceApp')
       }
     };
 
+    $scope.loginOauth = function(provider) {
+      $window.location.href = '/auth/' + provider;
+    };
   });
