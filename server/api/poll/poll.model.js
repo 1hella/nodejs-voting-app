@@ -6,17 +6,17 @@ var mongoose = require('mongoose'),
 var PollSchema = new Schema({
   name: String,
   author: String,
-  options: [{
-    name: String,
-    votes: [{
-      by: String,
-      date: {
-        type: Date,
-        default: Date.now
-      }
-    }]
+  options: [String],
+  votes: [Number],
+  users_who_voted: [{
+    option_voted_for: String,
+    date: {
+      type: Date,
+      default: Date.now
+    },
+    user: String
   }],
-  date_added: {
+  date_created: {
     type: Date,
     default: Date.now
   }

@@ -1,52 +1,57 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
 <header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>Dashboard</h1>
-    <p class="lead">What would you like to do today?</p>
-    <button ng-click="setTab(1)" class="btn btn-success btn-lg">New Poll</button>
-    <button ng-click="setTab(2)" class="btn btn-primary btn-lg">My Polls</button>
-  </div>
-</header>
-
-<div class="container dashboard-container" ng-show="isTab(1)">
-  <div>
-    <h2>New Poll</h2>
-  </div>
-  <form role="form" ng-submit="submitPoll()" novalidate>
-    <div class="form-group">
-      <label for="name">Name your poll</label>
-      <input ng-model="poll.name" class="form-control" type="text" id="name" placeholder="What is your favourite soda?">
+    <div class="container">
+        <h1>Dashboard</h1>
+        <p class="lead">What would you like to do today?</p>
+        <button ng-click="setTab(1)" class="btn btn-success btn-lg">New Poll</button>
+        <button ng-click="setTab(2)" class="btn btn-primary btn-lg">My Polls</button>
     </div>
-    <div class="form-group">
-      <label>Options</label>
-      <div ng-repeat="option in poll.options" class="input-group">
-        <input ng-model="option.name" type="text" class="form-control" placeholder="{{getPlaceholder($index)}}" required>
-        <span class="input-group-btn">
+</header>
+<!-- new poll -->
+<div class="container dashboard-container" ng-show="isTab(1)">
+    <div>
+        <h2>New Poll</h2>
+    </div>
+    <form id="pollForm" name="pollForm" role="form" ng-submit="pollForm.$valid && submitPoll()" novalidate>
+        <div class="form-group">
+            <label for="name">Name your poll</label>
+            <input ng-model="poll.name" class="form-control" type="text" id="name" placeholder="What is your favourite soda?" required>
+        </div>
+        <div class="form-group">
+            <label>Options</label>
+            <div ng-repeat="option in poll.options track by $index" class="input-group">
+                <input ng-model="poll.options[$index]" type="text" class="form-control" placeholder="{{getPlaceholder($index)}}" required>
+                <span class="input-group-btn">
           <button ng-click="deleteOption($index)" class="btn btn-danger" type="button"><i class="fa fa-close"></i></button>
         </span>
-      </div>
-    </div>
-    <div class="form-group">
-      <button ng-click="addOption()" type="button" class="btn btn-default form-control">More Options</button>
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-success form-control">Submit</button>
-    </div>
-  </form>
+            </div>
+        </div>
+        <div class="form-group">
+            <button ng-click="addOption()" type="button" class="btn btn-default form-control">More Options</button>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success form-control">Submit</button>
+        </div>
+    </form>
 </div>
-
-<div class="container dashboard-container" ng-show="isTab(2)">
-  <div>
-    <h2 class="text-center"> My Polls</h2>
-  </div>
-  <div ng-repeat="poll in myPolls">
-    <h3>{{ poll.name }}</h3>
-    <ul>
-      <li ng-repeat="option in poll.options">
-      <p> {{ option.name }} </p>
-      <p> {{ option.votes }} </p>
-      </li>
-    </ul>
-  </div>
+<!-- end new poll -->
+<!-- My polls -->
+<div class="text-center" ng-show="isTab(2)">
+    <div ng-repeat="poll in myPolls" class="row poll">
+        <div class="col-md-6 col-md-offset-3">
+            <h2 class="poll-title">{{ poll.name }}</h2>
+            <canvas class="chart chart-doughnut" data="poll.votes" labels="poll.options" legend="true"></canvas>
+            <h5>Created by: <cite>{{ poll.author }}</cite> on {{ poll.date_created | date }}</h5>
+            <button class="btn btn-primary">Edit</button>
+            <button class="btn btn-default" ng-click="deletePoll(poll)">Delete</button>
+        </div>
+    </div>
 </div>
+<!-- end my polls -->
+<footer class="footer">
+    <div class="container">
+        <p>FreeCodeCamp Basejump |
+            <a href="https://twitter.com/wanhella">@Wanhella</a>
+        </p>
+    </div>
+</footer>

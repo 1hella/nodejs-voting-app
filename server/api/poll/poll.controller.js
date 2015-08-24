@@ -20,9 +20,24 @@ exports.show = function(req, res) {
   });
 };
 
+// Get polls by username
+exports.find = function(req, res) {
+  Poll.find({ author: req.params.name }, function(err, polls) {
+    if (err) { return handleError(res, err); }
+    return res.json(polls);
+  });
+};
+
 // Creates a new poll in the DB.
 exports.create = function(req, res) {
-  Poll.create(req.body, function(err, poll) {
+  var poll = req.body;
+  poll.votes = [];
+  poll.options.forEach(function(option) {
+    // Add a vote initialized to 0 for each option
+    poll.votes.push(1);
+  });
+
+  Poll.create(poll, function(err, poll) {
     if(err) { return handleError(res, err); }
     return res.status(201).json(poll);
   });

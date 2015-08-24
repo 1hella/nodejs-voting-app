@@ -8,10 +8,22 @@
         </a>
     </div>
 </header>
-<div class="text-center" ng-show="isLoggedIn()">
-    <h2>You are logged in.</h2>
-    <h2>Polls will go here.</h2>
-    <img style="position:relative;left:30px;" src="../../assets/images/lenny.png">
+<!-- Polls div -->
+<div class="container" ng-show="isLoggedIn()">
+    <div ng-repeat="poll in polls" class="row poll">
+        <div>
+            <h2 class="text-center poll-title">{{ poll.name }}</h2>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <canvas id="doughnut" class="chart chart-doughnut" data="poll.votes" labels="poll.options" legend="true"></canvas>
+            
+            <h5 class="text-center">Created by: {{ poll.author }}, {{ poll.date_created | date }}</h5>
+            
+        </div>
+    </div>
+</div>
+<!-- end polls div -->
+<!-- Marketing div -->
 <div ng-hide="isLoggedIn()" class="container marketing">
     <div class="row">
         <div class="col-md-4">
@@ -31,6 +43,7 @@
         </div>
     </div>
 </div>
+<!-- end marketing div -->
 <footer class="footer">
     <div class="container">
         <p>FreeCodeCamp Basejump |

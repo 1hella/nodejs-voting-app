@@ -1,3 +1,16 @@
+.poll-title {
+    margin-bottom: 20px;
+}
+
+.poll {
+    margin-bottom: 20px;
+}
+
+.chart-area {
+    width: 60%;
+    margin: auto;
+}
+
 .thing-form {
     margin: 20px 0;
 }

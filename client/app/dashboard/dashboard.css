@@ -2,3 +2,11 @@
     width: 30%;
     text-align: center;
 }
+
+#pollForm.ng-invalid {
+  border-color: #fa787e;
+}
+
+#pollForm.ng-valid.ng-dirty {
+  border-color: #78fa89;
+}

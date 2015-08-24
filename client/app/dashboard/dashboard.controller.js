@@ -4,33 +4,32 @@ angular.module('workspaceApp')
   .controller('DashboardCtrl', function($scope, $http, Auth) {
     $scope.tab = 1; // new poll tab
     $scope.getCurrentUser = Auth.getCurrentUser;
-    $scope.myPolls = [];    
+    $scope.myPolls = [];
     $scope.poll = {
       author: $scope.getCurrentUser().name,
       name: '',
-      options: [{
-        name: ''
-      }, {
-        name: ''
-      }]
+      options: ['', '']
     };
 
-    $http.get('/api/polls').success(function(myPolls) {
-      $scope.myPolls = myPolls;
-    });
-    
+    getPolls();
+
+    /**
+     * retrieve user's polls from API and save them to $scope.myPolls
+     */
+    function getPolls() {
+      $http.get('/api/polls/user/' + $scope.getCurrentUser().name).success(function(myPolls) {
+        $scope.myPolls = myPolls;
+      });
+    }
+
     /* New Poll */
-    var clearPoll = function() {
+    function clearPoll() {
       $scope.poll = {
         author: $scope.getCurrentUser().name,
         name: '',
-        options: [{
-          name: ''
-        }, {
-          name: ''
-        }]
+        options: ['', '']
       };
-    };
+    }
 
     $scope.setTab = function(tab) {
       $scope.tab = tab;
@@ -52,7 +51,7 @@ angular.module('workspaceApp')
     };
 
     $scope.addOption = function() {
-      $scope.poll.options.push({});
+      $scope.poll.options.push('');
     };
 
     $scope.deleteOption = function(index) {
@@ -73,4 +72,9 @@ angular.module('workspaceApp')
     };
 
     /* My Polls */
+    $scope.deletePoll = function(poll) {
+      $http.delete('/api/polls/' + poll._id).success(function() {
+        getPolls();
+      });
+    };
   });

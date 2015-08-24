@@ -54,6 +54,21 @@ function hasRole(roleRequired) {
 }
 
 /**
+ * Checks if the resource being requested belongs to the user logged in
+ */
+function isOwner() {
+  return compose()
+  .use(isAuthenticated())
+  .use(function meetsRequirements(req, res, next) {
+    if (req.user.name === req.params.name) {
+      next();
+    } else {
+      res.status(403).send('Forbidden');
+    }
+  });
+}
+
+/**
  * Returns a jwt token signed by the app secret
  */
 function signToken(id) {
@@ -71,6 +86,7 @@ function setTokenCookie(req, res) {
 }
 
 exports.isAuthenticated = isAuthenticated;
+exports.isOwner = isOwner;
 exports.hasRole = hasRole;
 exports.signToken = signToken;
 exports.setTokenCookie = setTokenCookie;
