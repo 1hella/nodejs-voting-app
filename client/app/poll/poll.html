@@ -7,10 +7,10 @@
 </header> -->
 <div class="row text-center">
     <div class="col-md-8 col-md-offset-2">
-        <h2 class="poll-title">{{ poll.name }}</h2>
-        <canvas class="chart chart-doughnut" data="poll.votes" labels="poll.options" legend="true"></canvas>
-        <h5>Created by: <cite>{{ poll.author }}</cite> on {{ poll.date_created | date }}</h5>
+        
+            <h2 class="poll-title">{{ poll.name }}</h2>
+            <canvas class="chart chart-doughnut" data="poll.votes" labels="poll.options" legend="true"></canvas>
+            <h5 ng-show="poll._id">Created by: <cite>{{ poll.author }}</cite> on {{ poll.date_created | date }}</h5>                
         <a href="/dashboard" class="btn btn-success btn-lg">Create a new poll</a>
     </div>
 </div>
-

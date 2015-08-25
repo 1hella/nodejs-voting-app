@@ -22,29 +22,40 @@ angular.module('workspaceApp')
     }
 
     /*
+     * Add an option to a poll
+     */
+    $scope.addOption = function(poll, option) {
+      var pollIndex = $scope.polls.indexOf(poll);
+      $scope.polls[pollIndex].options.push(option);
+      $scope.polls[pollIndex].votes.push(1);
+
+      $http.put('/api/polls/' + poll._id, poll).
+      success(function(newPoll) {
+        // update version number
+        $scope.polls[pollIndex].__v = newPoll.__v;
+      }).
+      error(function(err) {
+        console.log(err);
+      });
+    };
+
+    /*
      * Vote for an option on a poll
      */
     $scope.onChartClick = function(chartElement, event) {
-      console.log(chartElement);
       var optionName = chartElement[0].label;
       var pollId = event.srcElement.id;
       var poll = $scope.polls.filter(function(poll) {
         return poll._id === pollId;
       })[0];
-      var pollIndex;
-      var optionIndex;
+      var pollIndex = $scope.polls.indexOf(poll);
+      var optionIndex = poll.options.indexOf(optionName);
 
-      pollIndex = $scope.polls.indexOf(poll);
-
-      optionIndex = poll.options.indexOf(optionName);
       poll.votes[optionIndex] = poll.votes[optionIndex] + 1;
-
       $http.put('/api/polls/' + poll._id, poll).
       success(function(newPoll) {
-        // replace old poll with new poll to avoid
-        // problems with the version number
+        // update version number
         $scope.polls[pollIndex].__v = newPoll.__v;
-        console.log('success', newPoll);
       }).
       error(function(err) {
         console.log(err);
