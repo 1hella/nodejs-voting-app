@@ -10,7 +10,7 @@
         <h2 class="poll-title">{{ poll.name }}</h2>
         <canvas class="chart chart-doughnut" data="poll.votes" labels="poll.options" legend="true"></canvas>
         <h5>Created by: <cite>{{ poll.author }}</cite> on {{ poll.date_created | date }}</h5>
-        <a href="/dashboard" class="btn btn-success btn-lg">Create your own poll</a>
+        <a href="/dashboard" class="btn btn-success btn-lg">Create a new poll</a>
     </div>
 </div>
 

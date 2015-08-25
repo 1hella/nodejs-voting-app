@@ -1,10 +1,13 @@
 'use strict';
 
 angular.module('workspaceApp')
-  .controller('DashboardCtrl', function($scope, $http, Auth) {
+  .controller('DashboardCtrl', function($scope, $http, $window, Auth) {
     $scope.tab = 1; // new poll tab
     $scope.getCurrentUser = Auth.getCurrentUser;
-    $scope.myPolls = [];
+    $scope.myPolls = [{
+      options: ['label1', 'label2'],
+      votes: [0, 1]
+    }];
     $scope.poll = {
       author: $scope.getCurrentUser().name,
       name: '',
@@ -14,7 +17,7 @@ angular.module('workspaceApp')
     // Fetch polls
     getPolls();
 
-    /**
+    /*
      * retrieve user's polls from API and save them to $scope.myPolls
      */
     function getPolls() {
@@ -73,5 +76,9 @@ angular.module('workspaceApp')
       $http.delete('/api/polls/' + poll._id).success(function() {
         getPolls();
       });
+    };
+
+    $scope.handleClick = function(poll) {
+      $window.location.href = '/poll/' + poll._id;
     };
   });

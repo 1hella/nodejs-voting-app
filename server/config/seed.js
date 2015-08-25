@@ -11,7 +11,7 @@ var Poll = require('../api/poll/poll.model');
 
 Poll.find({}).remove(function() {
   Poll.create({
-    name: 'What is your favourite brand?',
+    name: 'What is your favourite brand of soda?',
     author: 'Stephen Wanhella',
     options: ['Coca-Cola', 'Pepsi', 'Dr. Pepper'],
     votes: [5, 4, 7]
