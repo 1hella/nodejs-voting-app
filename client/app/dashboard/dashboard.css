@@ -1,8 +1,3 @@
-.dashboard-container {
-    width: 30%;
-    text-align: center;
-}
-
 #pollForm.ng-invalid {
   border-color: #fa787e;
 }
