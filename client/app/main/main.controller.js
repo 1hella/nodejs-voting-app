@@ -43,6 +43,8 @@ angular.module('workspaceApp')
      * Vote for an option on a poll
      */
     $scope.onChartClick = function(chartElement, event) {
+      if (!chartElement[0]) return;
+
       var optionName = chartElement[0].label;
       var pollId = event.srcElement.id;
       var poll = $scope.polls.filter(function(poll) {

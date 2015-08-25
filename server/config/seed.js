@@ -24,7 +24,7 @@ Poll.find({}).remove(function() {
     name: 'What is your favourite programming language?',
     author: 'Eric',
     options: ['C/C++', 'Python', 'Ruby', 'JavaScript', 'Java', 'Objective-C'],
-    votes: [3, 6, 4, 7, 0, 2]
+    votes: [3, 6, 4, 7, 1, 2]
   }, function() {
     console.log('finished populating polls');
   });
