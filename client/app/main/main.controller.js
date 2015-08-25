@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('workspaceApp')
-  .controller('MainCtrl', function($scope, $http, Auth) {
+  .controller('MainCtrl', function($scope, $http, $state, Auth) {
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.labels = ['Pepsi', 'Coca-Cola'];
     $scope.data = [1, 10];
@@ -44,6 +44,11 @@ angular.module('workspaceApp')
      */
     $scope.onChartClick = function(chartElement, event) {
       if (!chartElement[0]) return;
+
+      if (!$scope.isLoggedIn()) {
+        $state.go('login');
+        return;
+      }
 
       var optionName = chartElement[0].label;
       var pollId = event.srcElement.id;
