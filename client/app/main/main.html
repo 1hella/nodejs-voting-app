@@ -2,27 +2,15 @@
 <header class="hero-unit" id="banner">
     <div class="container">
         <h1>VotePlex</h1>
-        <p ng-hide="isLoggedIn()" class="lead">Create custom polls with live results.</p>
+        <p class="lead">Create custom polls with live results.</p>
         <a ng-hide="isLoggedIn()" href="/signup">
             <button class="btn btn-success btn-lg btn-wide">Sign Up</button>
         </a>
+        <a ng-show="isLoggedIn()" href="/dashboard">
+            <button class="btn btn-success btn-lg btn-wide">Dashboard</button>
+        </a>
     </div>
 </header>
-<!-- Polls div -->
-<div class="container" ng-show="isLoggedIn()">
-    <div ng-repeat="poll in polls" class="row poll">
-        <div>
-            <h2 class="text-center poll-title">{{ poll.name }}</h2>
-        </div>
-        <div class="col-md-8 col-md-offset-2">
-            <canvas id="doughnut" class="chart chart-doughnut" data="poll.votes" labels="poll.options" legend="true"></canvas>
-            
-            <h5 class="text-center">Created by: {{ poll.author }}, {{ poll.date_created | date }}</h5>
-            
-        </div>
-    </div>
-</div>
-<!-- end polls div -->
 <!-- Marketing div -->
 <div ng-hide="isLoggedIn()" class="container marketing">
     <div class="row">
@@ -44,6 +32,19 @@
     </div>
 </div>
 <!-- end marketing div -->
+<!-- Polls div -->
+<div class="container" ng-show="isLoggedIn()">
+    <div ng-repeat="poll in polls" class="row poll">
+        <div>
+            <h2 class="text-center poll-title">{{ poll.name }}</h2>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <canvas id="{{ poll._id }}" class="chart chart-doughnut" data="poll.votes" labels="poll.options" legend="true" click="onChartClick"></canvas>
+            <h5 class="text-center">Created by: {{ poll.author }}, {{ poll.date_created | date }}</h5>
+        </div>
+    </div>
+</div>
+<!-- end polls div -->
 <footer class="footer">
     <div class="container">
         <p>FreeCodeCamp Basejump |

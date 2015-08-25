@@ -1,3 +1,16 @@
-<div class="col-md-12">
-This is the poll view.
+<div ng-include="'components/navbar/navbar.html'"></div>
+<!-- <header class="hero-unit" id="banner">
+    <div class="container">
+        <h1 ng-show="poll._id">{{ poll.author }}'s Poll</h1>
+        
+    </div>
+</header> -->
+<div class="row text-center">
+    <div class="col-md-8 col-md-offset-2">
+        <h2 class="poll-title">{{ poll.name }}</h2>
+        <canvas class="chart chart-doughnut" data="poll.votes" labels="poll.options" legend="true"></canvas>
+        <h5>Created by: <cite>{{ poll.author }}</cite> on {{ poll.date_created | date }}</h5>
+        <a href="/dashboard" class="btn btn-success btn-lg">Create your own poll</a>
+    </div>
 </div>
+

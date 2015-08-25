@@ -11,6 +11,7 @@ angular.module('workspaceApp')
       options: ['', '']
     };
 
+    // Fetch polls
     getPolls();
 
     /**
@@ -62,12 +63,8 @@ angular.module('workspaceApp')
       $http.post('/api/polls', $scope.poll).
       then(function(response) {
         $scope.myPolls.push(response.data);
-        console.dir($scope.myPolls);
         clearPoll();
-        console.dir('Successfully inserted poll');
         $scope.setTab(2);
-      }, function error(err) {
-        console.dir('error', err);
       });
     };
 

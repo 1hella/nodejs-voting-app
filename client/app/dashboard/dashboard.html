@@ -41,7 +41,7 @@
         <div class="col-md-6 col-md-offset-3">
             <h2 class="poll-title">{{ poll.name }}</h2>
             <canvas class="chart chart-doughnut" data="poll.votes" labels="poll.options" legend="true"></canvas>
-            <h5>Created by: <cite>{{ poll.author }}</cite> on {{ poll.date_created | date }}</h5>
+            <h5>Created by: <cite>{{ poll.author }}</cite> on {{ poll.date_created | date }} – <a href="{{ '/poll/' + poll._id }}" target="_blank">Permalink</a></h5>
             <button class="btn btn-primary">Edit</button>
             <button class="btn btn-default" ng-click="deletePoll(poll)">Delete</button>
         </div>
