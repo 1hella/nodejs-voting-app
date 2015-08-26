@@ -89,7 +89,9 @@ angular.module('workspaceApp')
                 closeButton: true
               });
             } else {
-              toastr.error('An error occured!', error.status, {closeButton: true});
+              toastr.error('An error occured!', error.status, {
+                closeButton: true
+              });
             }
           });
     };
