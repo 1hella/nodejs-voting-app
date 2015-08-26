@@ -55,11 +55,11 @@ angular.module('workspaceApp')
 
       var optionName = chartElement[0].label;
       var optionIndex = $scope.poll.options.indexOf(optionName);
+      toastr.clear();
 
       $http.post('/api/polls/' + $scope.poll._id + '/' + optionIndex)
         .then(
           function(response) {
-            toastr.clear();
             toastr.success('Thank you for your input!', '', {
               closeButton: true
             });
@@ -70,7 +70,6 @@ angular.module('workspaceApp')
           },
           function(error) {
             if (error.status === 403) {
-              toastr.clear();
               toastr.warning('You have already voted on this poll!', '', {
                 closeButton: true
               });
