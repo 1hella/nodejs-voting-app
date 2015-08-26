@@ -8,14 +8,7 @@ var PollSchema = new Schema({
   author: String,
   options: [String],
   votes: [Number],
-  users_who_voted: [{
-    option_voted_for: String,
-    date: {
-      type: Date,
-      default: Date.now
-    },
-    user: String
-  }],
+  users_voted: [String],
   date_created: {
     type: Date,
     default: Date.now

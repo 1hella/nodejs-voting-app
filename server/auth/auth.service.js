@@ -9,7 +9,7 @@ var compose = require('composable-middleware');
 var User = require('../api/user/user.model');
 var validateJwt = expressJwt({ secret: config.secrets.session });
 
-/**
+/*
  * Attaches the user object to the request if authenticated
  * Otherwise returns 403
  */
@@ -35,7 +35,7 @@ function isAuthenticated() {
     });
 }
 
-/**
+/*
  * Checks if the user role meets the minimum requirements of the route
  */
 function hasRole(roleRequired) {
@@ -53,7 +53,7 @@ function hasRole(roleRequired) {
     });
 }
 
-/**
+/*
  * Checks if the resource being requested belongs to the user logged in
  */
 function isOwner() {
@@ -68,14 +68,14 @@ function isOwner() {
   });
 }
 
-/**
+/*
  * Returns a jwt token signed by the app secret
  */
 function signToken(id) {
   return jwt.sign({ _id: id }, config.secrets.session, { expiresInMinutes: 60*5 });
 }
 
-/**
+/*
  * Set token cookie directly for oAuth strategies
  */
 function setTokenCookie(req, res) {

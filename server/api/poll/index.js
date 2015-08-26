@@ -10,6 +10,7 @@ router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.get('/user/:name', auth.isOwner(), controller.find);
 router.post('/', controller.create);
+router.post('/:id/:option', auth.isAuthenticated(), controller.addVote);
 router.put('/:id', auth.isAuthenticated(), controller.update);
 router.patch('/:id', controller.update);
 /** todo: delete authorization */

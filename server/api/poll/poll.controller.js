@@ -42,7 +42,7 @@ exports.find = function(req, res) {
 exports.create = function(req, res) {
   var poll = req.body;
   poll.votes = [];
-  poll.options.forEach(function(option) {
+  poll.options.forEach(function() {
     // Add a vote initialized to 1 for each option
     poll.votes.push(1);
   });
@@ -52,6 +52,35 @@ exports.create = function(req, res) {
       return handleError(res, err);
     }
     return res.status(201).json(poll);
+  });
+};
+
+// Increment the vote number of an option of a poll
+// Returns a 403 if the user already voted
+exports.addVote = function(req, res) {
+  var id = req.params.id;
+  var optionIndex = req.params.option;
+  var username = req.user.name;
+
+  Poll.findById(id, function(err, poll) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!poll) {
+      return res.status(404).send('Not Found');
+    }
+    if (poll.users_voted.indexOf(username) !== -1) {
+      return res.status(403).send('User already cast vote');
+    }
+    poll.users_voted.push(username);
+    poll.votes[optionIndex] = poll.votes[optionIndex] + 1;
+    poll.markModified('votes');
+    poll.save(function(err, newPoll) {
+      if (err) {
+        return handleError(res, err);
+      }
+      return res.status(200).json(newPoll);
+    });
   });
 };
 
