@@ -31,6 +31,14 @@ describe('User Model', function() {
       done();
     });
   });
+  
+  it('should be able to save user', function(done) {
+    user.save(function(err, savedUser) {
+      should.not.exist(err);
+      should.exist(savedUser);
+      done();
+    });
+  })
 
   it('should fail when saving a duplicate user', function(done) {
     user.save(function() {

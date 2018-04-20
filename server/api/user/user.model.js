@@ -93,7 +93,7 @@ UserSchema
           if (self.id === user.id) return respond(false);
           return respond(true);
         }
-        respond(false);
+        respond(true);
       });
     },
     message: 'The specified email address is already in use.'
