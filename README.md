@@ -1,2 +1,2 @@
 # Free Code Camp Voting App
-Mean stack voting app for freecodecamp basejump: http://www.freecodecamp.com/challenges/basejumps-build-a-voting-app
+Mean stack voting app for freecodecamp basejump: https://www.freecodecamp.org/challenges/build-a-voting-app
