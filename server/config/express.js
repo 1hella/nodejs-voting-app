@@ -45,9 +45,10 @@ module.exports = function(app) {
   }));
 
   if ('production' === env) {
-    app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
-    app.use(express.static(path.join(config.root, 'public')));
-    app.set('appPath', path.join(config.root, 'public'));
+    app.use(favicon(path.join(config.root, 'client', 'favicon.ico')));
+    app.use(express.static(path.join(config.root, '.tmp')));
+    app.use(express.static(path.join(config.root, 'client')));
+    app.set('appPath', path.join(config.root, 'client'));
     app.use(morgan('dev'));
   }
 
