@@ -13,13 +13,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 * MongoDB
 * NPM/Node.js
-* Bower
 
 
 ### Installing & Running
 
 #### Install dependencies 
-`npm install && bower install`
+`npm install`
 
 #### Run the application
 `npm start` starts the node server, then open the localhost site specified in the output in a web browser.
