@@ -20,11 +20,12 @@
     "method-override": "~1.0.0",
     "mongoose": "^5.0.15",
     "morgan": "~1.0.0",
-    "passport": "~0.2.0",
-    "passport-facebook": "latest",
-    "passport-google-oauth": "latest",
-    "passport-local": "~0.1.6",
-    "passport-twitter": "latest",
+    "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0",
+    "passport-github": "^1.1.0",
+    "passport-google-oauth": "^1.0.0",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4",
     "serve-favicon": "~2.0.1"
   },
   "devDependencies": {
