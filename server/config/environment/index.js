@@ -11,8 +11,7 @@ function requiredProcessEnv(name) {
 }
 
 function makeHttps(domain) {
-  console.log(domain ? domain.replace(/^http:\/\//i, 'https://') : domain);
-  return domain ? domain.replace(/^http:\/\//i, 'https://') : domain;
+  return domain ? domain.replace(/^http:\/\//i, 'https://') : '';
 }
 
 // All configurations will extend these options
