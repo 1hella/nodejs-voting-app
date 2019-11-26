@@ -35,10 +35,10 @@ Deployment to Heroku requires a Heroku account and the heroku command line tools
 
 The steps are as follows:
 
-* `heroku create`
-* `heroku addons:create mongolab`
-* `git push heroku master`
-* `heroku open`
+  1) `heroku create`
+  2) `heroku addons:create mongolab`
+  3) `git push heroku master`
+  4) `heroku open`
 
 
 
