@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var compose = require('composable-middleware');
 var User = require('../api/user/user.model');
-var validateJwt = expressJwt({ secret: config.secrets.session });
+var validateJwt = expressJwt.expressjwt({ secret: config.secrets.session, algorithms: ["HS256"] });
 
 /*
  * Attaches the user object to the request if authenticated
