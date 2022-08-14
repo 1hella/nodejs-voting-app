@@ -83,17 +83,13 @@ UserSchema
   .path('email')
   .validate({
     isAsync: true,
-    validator: function (value, respond) {
+    validator: function (value) {
       var self = this;
-      this.constructor.findOne({
+      return this.constructor.findOne({
         email: value
-      }, function (err, user) {
+      }).then(function (err, user) {
         if (err) throw err;
-        if (user) {
-          if (self.id === user.id) return respond(false);
-          return respond(true);
-        }
-        respond(true);
+        return (user && self.id !== user.id) || true;
       });
     },
     message: 'The specified email address is already in use.'
@@ -150,8 +146,8 @@ UserSchema.methods = {
    */
   encryptPassword: function (password) {
     if (!password || !this.salt) return '';
-    var salt = new Buffer(this.salt, 'base64');
-    return crypto.pbkdf2Sync(password, salt, 10000, 64, null).toString('base64');
+    var salt = new Buffer.from(this.salt, 'base64');
+    return crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha1').toString('base64');
   }
 };
 
