@@ -1,7 +1,5 @@
-# Node.js FreeCodeCamp Voting App
+# Node.js Voting App
 A web application where users can log in, create polls, and vote on polls other users have created. Includes social logins using Twitter and Facebook.
-
-Freecodecamp basejump: https://www.freecodecamp.org/challenges/build-a-voting-app
 
 ## Getting Started
 
